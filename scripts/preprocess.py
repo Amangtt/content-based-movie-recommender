@@ -1,7 +1,5 @@
 import pandas as pd
 
-
-
 def merge_data(movies, user):
     merged_data=pd.merge(movies,user,on='movieId', how='outer')
     merged_data= merged_data.drop('timestamp',axis=1)
@@ -33,22 +31,7 @@ def final_user(df):
     expanded_df.to_csv('./Data/content_user_train.csv', index=False)
 
 
-def adjust_genre_ratings(d,user):
-    df=pd.read_csv(d)
-    genre_columns = df.columns[3:]  # Exclude 'userId' and 'movieId'
 
-    # Compute average rating per genre per user
-    user_genre_averages = df[genre_columns].replace(0, float('nan')).groupby(df['userId']).mean().fillna(0).round(1)
-
-
-    # Replace non-zero values with user’s average rating for that genre
-    for genre in genre_columns:
-        df[genre] = df.apply(lambda row: user_genre_averages.loc[row['userId'], genre] if row[genre] > 0 else 0, axis=1)
-    df=df.drop(columns='(no genres listed)')
-    df_edited= pd.merge(df,user,on=('userId','movieId'),how='inner')
-    df_edited=df_edited.drop(columns='timestamp')
-    df_edited.to_csv('./Data/user_final5.csv', index=False)
-    
 
 def final_movies(df):
     # Aggregate the most common title and compute the average rating
