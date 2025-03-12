@@ -2,3 +2,8 @@ pandas
 matplotlib
 logging
 pytest
+joblib
+numpy
+tensorflow
+keras
+mlflow
