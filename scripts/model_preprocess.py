@@ -3,8 +3,7 @@ from sklearn.preprocessing import StandardScaler,MinMaxScaler
 from sklearn.model_selection import train_test_split
 import numpy as np
 import joblib
-from scripts.logger import SetupLogger
-logger = SetupLogger(log_file='./logs/notebooks.log').get_logger()
+
 
 def preprocess(user,movies,y_train):
     try:
@@ -26,8 +25,8 @@ def preprocess(user,movies,y_train):
         user_train,user_test=train_test_split(user,test_size=0.2,random_state=1)
         movie_train,movie_test=train_test_split(movies,test_size=0.2,random_state=1)
         y_train,y_test=train_test_split(y_train,test_size=0.2,random_state=1)
-        logger.info('model preprocessing complete')
+      
         return user_train,user_test,movie_train,movie_test,y_train,y_test,scalerUser,scalerItem,scalerTarget
     except Exception as e:
         error_message = f"Failed to preprocess model: {e}"
-        logger.error(error_message)
+        print(error_message)
