@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler,MinMaxScaler
 from sklearn.model_selection import train_test_split
 import numpy as np
 import joblib
-from logger import SetupLogger
+from scripts.logger import SetupLogger
 logger = SetupLogger(log_file='./logs/notebooks.log').get_logger()
 
 def preprocess(user,movies,y_train):
