@@ -9,9 +9,9 @@ def run_pipeline():
     mlflow.set_experiment("Movie Recommender Pipeline")
 
     with mlflow.start_run():
-        user_path = "./Data/content_user_train.csv"
-        movies_path = "./Data/content_item_train.csv"
-        rating_path = "./Data/content_y_train.csv"
+        user_path = "../Data/content_user_train.csv"
+        movies_path = "../Data/content_item_train.csv"
+        rating_path = "../Data/content_y_train.csv"
 
         # Train
         model = train(user_path, movies_path, rating_path)

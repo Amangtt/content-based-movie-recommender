@@ -5,7 +5,7 @@ from keras.saving import register_keras_serializable
 import joblib
 import mlflow
 from logger import SetupLogger
-logger = SetupLogger(log_file='./logs/notebooks.log').get_logger()
+logger = SetupLogger(log_file='../logs/notebooks.log').get_logger()
 # Define the custom L2Normalize layer
 @register_keras_serializable()  # Register the custom layer for serialization
 class L2Normalize(tf.keras.layers.Layer):
@@ -30,12 +30,12 @@ def evaluate(user_path, movies_path, rating_path):
             
             # Load the model with custom_objects
         model = tf.keras.models.load_model(
-                "./model/model.keras",
+                "../model/model.keras",
                 custom_objects={"L2Normalize": L2Normalize}  # Register the custom layer
             )
-        joblib.dump(scalerUser,'./model/scalerUser.pkl')
-        joblib.dump(scalerItem,'./model/scalerItem.pkl')
-        joblib.dump(scalerTarget,'./model/scalerTarget.pkl')
+        joblib.dump(scalerUser,'../model/scalerUser.pkl')
+        joblib.dump(scalerItem,'../model/scalerItem.pkl')
+        joblib.dump(scalerTarget,'../model/scalerTarget.pkl')
             # Evaluate the model
         loss=model.evaluate([user_test[:, u_s:], movie_test[:, i_s:]], y_test)
         mlflow.log_metric("evaluation_loss", loss)
