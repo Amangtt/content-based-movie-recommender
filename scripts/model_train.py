@@ -73,8 +73,8 @@ def train(user_path, movies_path, rating_path):
             # Log metrics
         mlflow.log_metric("final_loss", history.history["loss"][-1])
             # Save the model
-        model.save("./model/model.keras", save_format="keras")
-        mlflow.log_artifact("./model/model.keras")
+        model.save("../model/model.keras", save_format="keras")
+        mlflow.log_artifact("../model/model.keras")
         logger.info('Successfully completed model training')
         return model
     except Exception as e:
